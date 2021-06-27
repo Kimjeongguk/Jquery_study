@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>
+<body>
+<header>
+    <p id="test">안녕하세요</p>
+    <h1 class="logo">LOGO</h1>
+    <div class="join">회원가입</div>
+    <nav>
+        <ul class="gnb">
+            <li>대메뉴 01
+                <ul class="sub_menu">
+                    <li>서브메뉴 1-1</li>
+                    <li>서브메뉴 1-2</li>
+                    <li>서브메뉴 1-3</li>
+                    <li>서브메뉴 1-4</li>
+                    <li>서브메뉴 1-5</li>
+                </ul>
+            </li>
+            <li>대메뉴 02</li>
+        </ul>
+    </nav>
+</header>
+<div id="visual">
+    <p> 비쥬얼 </p>
+</div>
+<div class="banner">베너</div>
+<div id="content">
+    <div class="left">베너단</div>
+    <div class="right">
+        <p class="until">본문단</p>
+    </div>
+</div>
+<div class="banner">베너</div>
+<footer id="footer">
+    하단
+</footer>
+    <script>
+        $(function(){
+            $("body #test").html("어 반갑고");
+            // $(".logo").css("border", "2px solid skyblue");
+            $(".logo").css({
+                "border": "2px solid skyblue",
+                "color": "blue",
+                "text-align": "center",
+                "padding": 20
+            });
+            $("nav").css("border", "2px solid orange");
+            $(".gnb>li").css("border-left", "5px solid red");
+            $("#visual~.banner").css("background-color", "pink");
+            $("p.until").css("color", "red");
+            $(".left, .right").css("border", "2px solid #ccc");
+            $(".sub_menu>li").css("border", "2px solid blue");
+            $(".sub_menu>li:last").css("background-color", "yellow");
+            // $(".sub_menu>li:nth-child(2n)").css("background-color", "green");
+            $(".sub_menu>li:odd").css("background-color", "green");
+            $(".sub_menu>li").eq(0).css("color", "red");
+        });
+    </script>
+</body>
+</html>
