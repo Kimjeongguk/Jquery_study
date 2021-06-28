@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <style>
+        .txt1 {
+            background-color: yellow;
+            width: 50px;
+        }
+        h1 {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>안녕</h1>
+    <h2>잘가</h2>
+    <p class="txt1">box</p>
+    <button class="go">Go</button>
+    <button class="back">Back</button>
+    <script>
+        let test1 = $("h1:hidden").text();
+        let test2 = $("h2:visible").text();
+        console.log(test1);        
+        console.log(test2);        
+        let txt1 = $(".txt1");
+        let count = 1;
+        $("button").on("click", function(){
+            if(!txt1.is(":animated")){
+                if($(this).hasClass("back")){
+                    count--;
+                    if(count < 1) {
+                        count = 1;
+                        return false;
+                    }
+                    txt1.animate({marginLeft: "-=10%"},300);
+                }else{
+                    count++;
+                    if(count > 3) {
+                        count = 3;
+                        return false;
+                    }
+                    txt1.animate({marginLeft: "+=10%"},300);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

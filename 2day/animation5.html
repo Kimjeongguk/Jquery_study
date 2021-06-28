@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <style>
+        #box {
+            background-color: skyblue;
+            width: 100px;
+            height: 100px;
+            margin: 100px auto;
+            transition: transform 1s ease;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="box">box</div>
+    <button class="play">play</button>
+    <button class="info"><span>info</span></button>
+    <script>
+        $(".play").click(function(){
+            $("#box").css({
+                transform: "rotate(360deg)"
+            });
+        });
+        $("button").find("span").click(function(){
+            console.log($("#box").text());
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <style>
+        .txt1 {
+            background-color: yellow;
+            margin: 10px 0;
+        }
+        .txt2 {
+            background-color: skyblue;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <p><button class="btn1">버튼1</button></p>
+    <span class="txt1">500px move</span>
+    <p><button class="btn2">버튼2</button></p>
+    <span class="txt2">50px move</span>
+    <script>
+        $(".btn1").click(function(){
+            $(".txt1").animate({marginLeft: "500px"}, 2000, "linear", function(){
+                alert("end...");
+            });
+        });
+        $(".btn2").click(function(){
+            $(".txt2").animate({marginLeft: "+=50px"}, 1000, "linear", function(){
+                alert("end...");
+            });
+        });
+    </script>
+</body>
+</html>

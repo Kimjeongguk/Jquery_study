@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>
+<body>
+    <div id="txt">
+        <p>안</p>
+        <p>녕</p>
+        <p>히</p>
+    </div>
+    <script>
+        $("#txt>p").text(function(index, text){
+            return text + index;
+        });
+        $("#txt>p").html(function(index, text){
+            return "<strong>" + text + index + "</strong>";
+        });
+    </script>
+</body>
+</html>

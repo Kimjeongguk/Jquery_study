@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <style>
+        #popup {
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,0.7);
+            display: none;
+        }
+        .modal {
+            width: 400px;
+            height: 300px;
+            padding: 50px;
+            margin: 100px auto;
+            background-color: #fff;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="popup">
+        <div class="modal">
+            <h1>팝업</h1>
+            <P>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Enim velit dolorem soluta aperiam ducimus in eaque molestias unde recusandae quibusdam quod voluptatibus sunt dicta, qui dolores facere esse numquam harum.
+            </P>
+        </div>
+    </div>
+    <script>
+        $("#popup").fadeIn();
+        $(".modal").click(function(){
+            $("#popup").fadeOut();
+        });
+    </script>
+</body>
+</html>

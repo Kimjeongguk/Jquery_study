@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <style>
+        #box {
+            width: 300px;
+            height: 100px;
+            border: 5px solid red;
+            background-color: yellow;
+            padding: 20px;
+            margin: 50px 0;
+        }
+        .on {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">box</div>
+    <!-- <button>hide</button>
+    <button>show</button>
+    <button>toggle</button>
+    <script>
+        $("button:first").click(function(){
+            // $("#box").css("display", "none");
+            $("#box").hide(3000);
+        });
+        $("button:nth-of-type(2)").click(function(){
+            // $("#box").css("display", "block");
+            $("#box").show(3000);
+        });
+        $("button:nth-of-type(3)").click(function(){
+            $("#box").toggle(3000);
+        }); -->
+
+        <!-- ------------------------------------------------------ -->
+        <!-- <button>fadeout</button>
+        <button>fadein</button>
+        <button>fadetoggle</button>
+        <script>
+            $("button:first").click(function(){
+                // $("#box").css("display", "none");
+                $("#box").fadeOut(1000);
+            });
+            $("button:nth-of-type(2)").click(function(){
+                // $("#box").css("display", "block");
+                $("#box").fadeIn(1000);
+            });
+            $("button:nth-of-type(3)").click(function(){
+                $("#box").fadeToggle(1000);
+            });
+        </script> -->
+        <!-- ------------------------------------------------------ -->
+        <button>slideUp</button>
+        <button>slideDown</button>
+        <button>slideToggle</button>
+        <script>
+            $("button:first").click(function(){
+                // $("#box").css("display", "none");
+                $("#box").slideUp(1000);
+            });
+            $("button:nth-of-type(2)").click(function(){
+                // $("#box").css("display", "block");
+                $("#box").slideDown(1000);
+            });
+            $("button:nth-of-type(3)").click(function(){
+                $("#box").slideToggle();
+            });
+        </script>
+
+</body>
+</html>

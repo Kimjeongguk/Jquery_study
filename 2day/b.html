@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <style>
+        .circle0, .circle1, .circle2 {
+            width: 200px;
+            height: 200px;
+            border-radius: 100%;
+            border: 5px solid red;
+            display: inline-block;
+            line-height: 200px;
+            text-align: center;
+        }
+        .box {
+            border-bottom: 2px solid #ccc;
+            text-align: center;
+            padding: 20px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="m1">
+        <h1>jQuery</h1>
+    </div>
+    <div id="m2">
+        <div>html</div>
+        <div>css</div>
+        <div>jQuery</div>
+    </div>
+    <script>
+        $("#m1>h1").addClass("box");
+        $("#m2>div").addClass(function(index){
+            return "circle"+index;
+        });
+
+    </script>
+</body>
+</html>
