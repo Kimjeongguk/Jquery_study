@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <style>
+        #txtbox {
+            font-size: 14px;
+            padding: 20px;
+            border: 2px solid #333;
+            line-height: 1.8;
+            width: 400px;
+        }
+    </style>
+</head>
+<body>
+    <p class="btnbox">
+        <button class="zoomOut"> - </button>
+        <button class="origin"> 100% </button>
+        <button class="zoomIn"> + </button>
+    </p>
+    <p class="fontSize">14px</p>
+    <div id="txtbox">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deserunt impedit unde perferendis eius numquam consequuntur amet, magni tempora, quo similique, quas adipisci doloribus cupiditate facilis libero ut neque id reiciendis.
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deserunt impedit unde perferendis eius numquam consequuntur amet, magni tempora, quo similique, quas adipisci doloribus cupiditate facilis libero ut neque id reiciendis.
+    </div>
+    <script>
+        let size = 14;
+        $(".btnbox>.zoomOut").click(function(){
+            size--;
+            if(size < 8){
+                size = 8;
+            }else{
+                $(".fontSize").text(size+"px");
+                $("#txtbox").css("font-size", `${size}px`);
+            }
+        });
+        $(".btnbox>.zoomIn").click(function(){
+            size++;
+            if(size > 40){
+                size = 40;
+            }else{
+                $(".fontSize").text(size+"px");
+                $("#txtbox").css("font-size", `${size}px`);
+            }
+        });
+        $(".btnbox>.origin").click(function(){
+            size = 14;
+            $(".fontSize").text(size+"px");
+            $("#txtbox").css("font-size", `${size}px`);
+        });
+    </script>
+</body>
+</html>

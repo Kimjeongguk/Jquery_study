@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <style>
+        #box {
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <p>
+        <button>동작~!</button>
+    </p>
+    <div id="box"></div>
+    <script>
+        $("button").on("click", function(){
+            $("#box").animate({"margin-left": "500px"},1000,"swing",function(){
+                alert("^^");
+            });
+        });
+    </script>
+</body>
+</html>
