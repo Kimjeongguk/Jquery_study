@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        #slider {
+            width: 1200px;
+            margin: 100px auto;
+            overflow: hidden;
+        }
+        .imgbox {
+            width: 4800px;
+            height: 527px;
+            position: relative;
+            list-style: none;
+            overflow: hidden;
+        }
+        .imgbox li {
+            float: left;
+            width: 1200px;
+            height: 527px;
+            font-size: 0;
+        }
+       
+        .imgbox img {
+            width: 100%;
+        }
+        .dot {
+            text-align: center;
+            list-style: none;
+        }
+        .dot li {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #ddd;
+            display: inline-block;
+            margin-top: 30px;
+        }
+        .dot li.on {
+            background-color: orange;
+        }
+    </style>
+</head>
+<body>
+  <div id="slider">
+     <ul class="imgbox">
+         <li><img src="images/main_img01.png" alt="1"></li>
+         <li><img src="images/main_img02.png" alt="2"></li>
+         <li><img src="images/main_img03.png" alt="3"></li>
+     </ul> 
+     <ul class="dot">
+         <li class="on">1</li>
+         <li>2</li>
+         <li>3</li>
+     </ul>
+  </div> 
+  <script>
+        let num = 0;
+        $(".imgbox>li:first").clone(true).insertAfter($(".imgbox>li:last"));
+        $("imgbox").css("height", $(".imgbox>li").length * $(".imgbox>li").outerHeight());
+        
+        
+        $(".dot>li").click(function(){
+            $(this).addClass("on").siblings("li").removeClass("on");
+            $(".imgbox").animate({left: $(this).index() * -1200},1000);
+        });
+
+
+        function play(){
+            num++;
+            $(".imgbox").animate({left: num *-1200},1000, function(){
+                if(num == 3){
+                    num = 0;
+                    $(".imgbox").css("left", 0);
+                }
+                $(".dot>li").eq(num%3).addClass("on").siblings("li").removeClass("on");
+            });
+        }
+
+        let move = setInterval(play, 1000);
+
+        $(".dot>li").mouseenter(function(){
+            clearInterval(move);
+        });
+        $(".dot>li").mouseleave(function(){
+            move = setInterval(play, 1000);
+    });
+  </script>  
+</body>
+</html>

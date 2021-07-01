@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 70%;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            text-align: center;
+            padding: 5px;
+        }
+        th {
+            background-color: skyblue;
+            color: pink;
+        }
+    </style>
+    <script src="js/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+    <button>시험점수 출력~!</button>
+    <div id="test">
+        <table>
+            <caption>시험점수</caption>
+            <thead>
+
+            </thead>
+            <tbody>
+                <tr>
+                    <th>순번</th>
+                    <th>이름</th>
+                    <th>나이</th>
+                    <th>점수</th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        $("button").click(function(){
+            $.ajax({
+                url: "js/test.json",
+                dataType: "json",
+                success: function(data){
+                    let tag = "";
+                    $.each(data, function(index, value){
+                        tag += "<tr>";
+                        tag += "<td>"+ value.id + "</td>";
+                        tag += "<td>"+ value.name + "</td>";
+                        tag += "<td>"+ value.age + "</td>";
+                        tag += "<td>"+ value.score + "</td>";
+                        tag += "</tr>";   
+                    });
+                    $("table tbody").append(tag);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

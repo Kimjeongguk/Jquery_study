@@ -1,0 +1,7 @@
+[
+    { "id": 1, "name": "고길동", "age": 40,"score": 100 },
+    { "id": 2, "name": "감스트", "age": 36,"score": 50 },
+    { "id": 3, "name": "둘리", "age": 1000,"score": 70 },
+    { "id": 4, "name": "강은호", "age": 27,"score": 12 },
+    { "id": 5, "name": "전기", "age": 22,"score": 30 }
+]

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script>
+    
+    $(function(){    
+        $("#newsWrap>h2>a").on("click",function(e){
+            e.preventDefault();
+            $("#newsWrap>h2>a").removeClass("on");
+            $(this).addClass("on");
+
+            $.ajax({
+                url: "https://api.rss2json.com/v1/api.json",
+                dataType: "json",
+                data: {
+                    rss_url: $(this).attr("href"),
+                    api_key: "ijzakfwioqd36zymt5rcfuurhwqawbu4a6t1amuj",
+                    count: 5 //전송받을 item개수
+                },
+                success: function(data){
+                    $("#newsList").empty();
+                    for ( i in data.items){
+                        let title = data.items[i].title;
+                        let link = data.items[i].link;
+                        let newsDate = new Date(data.items[i].pubDate);
+                        // console.log(newsDate);
+                        let newsDateY = newsDate.getFullYear();
+                        let newsDateM = newsDate.getMonth()+1;
+                        if (newsDateM < 10){
+                            newsDateM = "0"+newsDateM;
+                        }
+                        let newsDateD = newsDate.getDate();
+                        if (newsDateD < 10){
+                            newsDateD = "0"+newsDateD;
+                        }
+                        let pubDate = newsDateY + "-"+newsDateM+"-"+newsDateD;
+                        let list = $(`<li><strong></strong><a></a><span></span></li>`);
+                        list.find("strong").html(Number(i)+1);
+                        list.find("a").attr("href", link);
+                        list.find("a").html(title);
+                        list.find("span").text(pubDate);
+                        
+                        $("#newsList").append(list);
+                    }
+
+                },
+            });
+        });
+        
+    });
+    
+</script>
+<style>
+    /* 기본 세팅 */
+    *{
+        margin:0;
+        padding:0;
+    }
+    li{
+        list-style:none;
+    }
+    body{
+        font:12px Malgun Gothic,"맑은고딕",gulim,"굴림",sans-serif;
+        color:#333;
+        padding-top:20px;
+    }
+    h1,h2,h3,h4,h5,h6{
+        font-size:100%;
+        font-weight:normal;
+    }
+    a{
+        color:#333;
+        text-decoration:none;
+        outline:none;
+    }
+    h1{
+        font-size:2em;
+        text-align:center;
+        margin-bottom:10px;
+        /* color:; */
+    }
+    
+    /* 탭 메뉴 디자인 */
+    #newsWrap{
+        width:600px;
+        margin:0 auto;
+    }
+    #newsWrap li{
+        height:25px;
+        line-height:25px;
+        position:relative;
+    }
+    #newsWrap span{
+        position:absolute;
+        top:0;
+        right: 3px;
+    }
+    #newsWrap li a{
+       display:inline-block;
+        width:400px;
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        padding-left:20px;
+    }
+    #newsWrap h2{
+        float:left;
+        padding-right:3px;
+        margin-bottom:10px;
+    }
+    #newsList{
+        clear:both;
+    }
+    
+    /* 비활성화 탭 버튼 모양 */
+    #newsWrap h2 a{
+        display:inline-block;
+        padding:8px 10px;
+        border:1px solid #aaa;
+        border-bottom:none;
+        border-radius:5px 5px 0 0;
+        background:#ccc;
+    }
+    
+    /* 활성화 탭 버튼 모양 */
+    #newsWrap h2 a.on{
+        background-color:#fff;
+        font-weight:bold;
+    }
+</style>
+</head>
+ 
+<body>
+    <h1>블로그 RSS</h1>
+    <div id="newsWrap">
+        <h2><a href="https://www.khan.co.kr/rss/rssdata/politic_news.xml" class="on">정치</a></h2>
+        <h2><a href="https://www.khan.co.kr/rss/rssdata/economy_news.xml">경제</a></h2>
+        <h2><a href="https://www.khan.co.kr/rss/rssdata/society_news.xml">사회</a></h2>
+        <ul id="newsList"></ul>
+    </div>
+</body>
+</html>
