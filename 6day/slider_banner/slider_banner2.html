@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        #wrap {
+            width: 100%;
+        }
+        .imgbox {
+            width: 400%;
+            list-style: none;
+            position: absolute;
+            left: 0;
+        }
+        .imgbox li {
+            width: 25%;
+            float: left;
+        }
+        .imgbox li img {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <ul class="imgbox">
+            <li><img src="b1.jpg" alt="1"></li>
+            <li><img src="b2.jpg" alt="2"></li>
+            <li><img src="b3.jpg" alt="3"></li>
+        </ul>
+    </div>
+    <script>
+        let now = 0;
+        let width;
+        
+        $(".imgbox>li:first").clone(true).insertAfter(".imgbox>li:last");
+        $(window).resize(function(){
+            width = $(".imgbox li").outerWidth();
+        });
+       
+        $(window).resize();
+        setInterval(function(){
+                now++;
+                $(".imgbox").animate({"left": now*-width},300, function(){
+                    if(now > 2){
+                        now = 0;
+                        $(".imgbox").css("left", 0);
+                    }
+                });
+            },2000);
+    </script>
+</body>
+</html>

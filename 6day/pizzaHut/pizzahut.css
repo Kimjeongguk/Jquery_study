@@ -9,6 +9,14 @@ body, h1, h2, h3, ul, li, p, span {
     /* overflow-x: hidden; */
     /* overflow-y: auto; */
 }
+table {
+    border-collapse: collapse;
+}
+td {
+    border: 1px solid #ccc;
+    padding: 1px 50px;
+    font-size: 30px;
+}
 ul {
     list-style: none;
 }
@@ -26,6 +34,7 @@ a {
     margin: 0 auto;
 }
 #wrap {
+    max-width: 2000px;
    min-width: 1360px;
    margin: 0 auto;
 }
@@ -52,7 +61,6 @@ header {
 .gnb {
     width: 45%;
     float: left;
-    
 }
 .gnb li {
     float: left;
@@ -84,6 +92,7 @@ header {
     opacity: 0; */
     display: none;
     background-color: #fff;
+    border-bottom: 1px solid #ccc;
 }
 .gnb>ul>li>ul>li {
     height: 70px;
@@ -106,6 +115,28 @@ header {
 .top_icon dd:first-child {
     font-size: 20px;
 }
+#popup {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.7);
+    display: none;
+    z-index: 999;
+}
+.modal {
+    width: 50%;
+    height: 40%;
+    padding: 50px;
+    margin: 100px auto;
+    background-color: #fff;
+    text-align: center;
+}
+.modal>.list {
+    display: inline-block;
+    margin: 0 auto;
+}
 .menuAll {
     width: 100%;
     margin-top: 100px;
@@ -121,7 +152,6 @@ header {
     width: 1000px;
     margin: 0 auto;
     margin-top: 50px;
-    
 }
 .menulist {
     width: 78%;
@@ -153,8 +183,34 @@ header {
 
 
 #visual {
-    margin-top: 100px;
+    padding-top: 100px;
+    position: relative;
+    font-size: 0;
+    width: 1360px;
+    height: 500px;
+    margin: 0 auto;
+    overflow: hidden;
+    z-index: -100;
 }
+
+.imgbox {
+    width: 5440px;
+    height: 500px;
+    position: absolute;
+    left: 0;
+    top: 80px;
+    margin: 0 auto;
+}
+.imgbox>div {
+    width: 1360px;
+    float: left;
+    box-sizing: border-box;
+}
+.imgbox>div img {
+    width: 100%;
+}
+
+
 #visual a {
     display: block;
     text-align: center;

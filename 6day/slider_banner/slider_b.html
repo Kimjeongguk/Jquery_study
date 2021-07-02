@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <style>
+* { margin: 0; padding: 0; }
+a { font-size: 14px; color: #333; text-decoration: none; }
+#banner { width: 1000px; height: 240px; 
+         margin: 50px auto; position: relative; 
+         overflow: hidden; font-size: 0; }
+.imgbox { width: 5000px; height: 182px; position: absolute; 
+          left: 0px; top: 0; }     
+.imgbox>div { width: 1000px; float: left; border: 1px solid blue; box-sizing: border-box; }  
+.imgbox>div img { width: 100%; }
+.dot { text-align: center; position: absolute; width: 100%;
+       left: 0; bottom: 0; }
+.dot a { width: 26px; height: 26px; background-color: #999; 
+         color: #fff; display: inline-block;
+         border-radius: 50%; margin: 0 3px; line-height: 26px; }
+.dot a.on { background-color: orange; }        
+.btn {
+  text-align: center;
+}
+.btn button {
+  margin-top: 20px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  color: #555;
+  font-size: 32px;
+  cursor: pointer;
+  position: absolute;
+  top: 50px;
+  padding: 0 10px;
+}
+#prev {
+  left: 50px;
+}
+#next {
+  right: 50px;
+}
+    </style>
+    <script>
+
+    </script>
+</head>
+<body>
+ <div id="banner">
+    <div class="imgbox">
+      <div class="0">
+        <a href="#"><img src="b1.jpg" alt=""></a> <!-- left:0 --> 
+      </div>  
+      <div class="1">
+        <a href="#"><img src="b2.jpg" alt=""></a> <!-- left:-1000 -->    
+      </div>  
+      <div class="2">
+        <a href="#"><img src="b3.jpg" alt=""></a> <!-- left:-2000 -->     
+      </div>  
+      <div class="3">
+        <a href="#"><img src="b4.jpg" alt=""></a> <!-- left:-3000 -->     
+      </div>  
+    </div> 
+    <div class="dot">
+      <a href="#" class="on">1</a>  
+      <a href="#">2</a>  
+      <a href="#">3</a>  
+      <a href="#">4</a>  
+    </div> 
+    <div class="btn">
+      <button id="prev"> &lt; </button>
+      <button id="next"> &gt; </button>
+    </div>
+    <script>
+      let now = 0;
+      let total = $(".imgbox>div").length;
+      let width = $(".imgbox>div").outerWidth();
+      $(".imgbox").css("width", width*(total+1));
+      $(".imgbox>div:first").clone(true).insertAfter(".imgbox>div:last");
+      let move = setInterval(play, 2000);
+
+      $("#next").on({
+        click: function(){
+          $(".imgbox").stop().animate({left: "-=1000"}, 500, function(){
+            now++;
+            $(".dot>a").eq(now).addClass("on").siblings("a").removeClass("on");
+            if(now == total){
+             now = 0;
+             $(this).css("left", 0);
+             $(".dot>a").eq(0).addClass("on").siblings("a").removeClass("on");
+            }
+          });
+        },
+        mouseenter: function(){
+          clearInterval(move);
+        },
+        mouseleave: function(){
+          move = setInterval(play, 2000);
+        }
+      });
+      $("#prev").on({
+        click: function(){
+          now--;
+          if(now < 0){
+            now = 3;
+            $(".imgbox").css("left", total*-width);
+          }
+          $(".imgbox").stop().animate({left: now*-width}, 500, function(){
+            $(".dot>a").eq(now).addClass("on").siblings("a").removeClass("on");
+            
+          });
+        },
+        mouseenter: function(){
+          clearInterval(move);
+        },
+        mouseleave: function(){
+          move = setInterval(play, 2000);
+        }
+      });
+      function play(){
+        now++;
+        $(".dot>a").eq(now%total).addClass("on").siblings("a").removeClass("on");
+        $(".imgbox").stop().animate({left: now*-width}, 500, function(){
+          if (now == total){
+            now = 0;
+            $(".imgbox").css("left", 0);
+          }
+        });
+      }
+
+      $(".dot>a").on({
+        click: function(){
+          let index = $(this).index();
+          now = index;
+          $(this).addClass("on").siblings("a").removeClass("on");
+          $(".imgbox").stop().animate({left: width*-index}, 500,);
+        },
+        mouseenter: function(){
+          clearInterval(move);
+        },
+        mouseleave: function(){
+          move = setInterval(play, 2000);
+        }
+
+      });
+    </script>
+ </div>   
+</body>
+</html>
