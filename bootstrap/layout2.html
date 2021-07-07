@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+  <title>부트스트랩4</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <style>
+      * {
+          margin: 0;
+          padding: 0;
+      }
+      .sampleimg {
+          height: 200px;
+          background-color: #aaa;
+      }
+  </style>
+</head>
+<body>
+    <div class="container">
+        <div id="carousel" class="carousel slide" data-ride="carousel">
+            <ul class="carousel-indicators">
+                <li class="active" data-target="#carousel" data-slide-to="0"></li>
+                <li data-target="#carousel" data-slide-to="1"></li>
+                <li data-target="#carousel" data-slide-to="2"></li>
+            </ul>
+
+            <div class="carousel-inner" role="listbox">
+                <div class="carousel-item active">
+                    <img src="img/pmb1.jpg" alt="" width="100%">
+                    <div class="carousel-caption">
+                        <h3>할인상품 1</h3>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="img/pmb2.jpg" alt="" width="100%">
+                    <div class="carousel-caption">
+                        <h3>할인상품 2</h3>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="img/pmb3.jpg" alt="" width="100%">
+                    <div class="carousel-caption">
+                        <h3>할인상품 3</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <a href="#carousel" class="carousel-control-prev" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a href="#carousel" class="carousel-control-next" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
+    </div>
+    <div class="container">
+        <!-- 탭메뉴 제목 -->
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a href="#menu1" class="nav-link active" data-toggle="tab">공지사항</a>
+            </li>
+            <li class="nav-item">
+                <a href="#menu2" class="nav-link" data-toggle="tab">겔러리</a>
+            </li>
+            <li class="nav-item">
+                <a href="#menu3" class="nav-link" data-toggle="tab">고객센터</a>
+            </li>
+        </ul>
+        <!-- 탭컨텐츠 박스 -->
+        <div class="tab-content">
+            <div id="menu1" class="container tab-pane active">
+                <h3>menu 1</h3>
+                <p>
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                </p>
+            </div>
+            <div id="menu2" class="container tab-pane fade">
+                <h3>menu 2</h3>
+                <p>
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                </p>
+            </div>
+            <div id="menu3" class="container tab-pane fade">
+                <h3>menu 3</h3>
+                <p>
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                </p>
+            </div>
+        </div>
+    </div>
+    <script>
+        $('.carousel').carousel({
+            interval: 1000
+        })
+    </script>
+</body>
+</html>
