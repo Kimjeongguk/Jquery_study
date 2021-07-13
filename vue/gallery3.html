@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue 겔러리</title>
+    <style>
+h1 { text-align: center; padding: 50px 0; }
+ul { list-style: none; text-align: center; 
+     display: flex; flex-flow: row wrap; justify-content: space-between; }
+ul li { width: 30%; padding: 10px; margin: 10px 0; 
+        border: 2px solid #ccc; border-radius: 10px;}
+.imgbox { overflow: hidden; }
+ul li img { width: 100%; transition: .5s; }
+ul li:hover img { transform: scale(1.2); }
+ul li h2 { font-size: 28px; text-align: center; }
+ul li p { padding: 10px; color: #555; }
+.modal { width: 400px; padding: 20px; position: fixed; left: 50%; top: 100px; margin-left: -200px;
+         background-color: #fff; z-index: 9; border: 2px solid #ccc; box-shadow: 3px 3px 5px #eee; }
+.modal img { width: 100%; }
+    </style>
+</head>
+<body>
+
+    <h1>상품 겔러리</h1>
+    <div id="app">
+        <ul>
+           <template v-for="(item, idx) in items" :key="idx">
+             <li :class="item.proClass" @click="popup(idx)">
+                <h2>{{ item.title + " - "+ idx }}</h2>
+                <div class="imgbox">
+                    <img :src="item.proSrc" :alt="item.proAlt">
+                </div>
+                <p>{{ item.proTxt }}</p>
+             </li>
+           </template>  
+           
+           <div class="modal" v-if="show" v-on:click="show=false" >
+             <h3>{{ items[index].title }}</h3>
+             <div class="imgbox">
+              <img :src="items[index].proSrc" :alt="items[index].proAlt">
+             </div>
+           </div> 
+        </ul>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+    <script>
+       new Vue({
+           el: "#app",
+           data: {
+            index: null,
+            show: false,
+            items: [
+                { 
+                  proClass: "0", 
+                  title: "상품제목 01", 
+                  proSrc: "vue_gallery/pmb1.jpg",
+                  proAlt: "pmb1",
+                  proTxt: "오늘의 할인상품은 입니다.",
+                },
+                { 
+                  proClass: '1', 
+                  title: "상품제목 02", 
+                  proSrc: "vue_gallery/pmb2.jpg",
+                  proAlt: "pmb2",
+                  proTxt: "오늘의 할인상품 입니다.",
+                },
+                { 
+                  proClass: '2', 
+                  title: "상품제목 03", 
+                  proSrc: "vue_gallery/pmb3.jpg",
+                  proAlt: "pmb3",
+                  proTxt: "오늘의 할인상품은 입니다.",
+                },
+                { 
+                  proClass: '3', 
+                  title: "상품제목 04", 
+                  proSrc: "vue_gallery/pmb4.jpg",
+                  proAlt: "pmb4",
+                  proTxt: "오늘의 할인상품은 입니다.",
+                },
+                { 
+                  proClass: '4', 
+                  title: "상품제목 05", 
+                  proSrc: "vue_gallery/pmb5.jpg",
+                  proAlt: "pmb5",
+                  proTxt: "오늘의 할인상품은 입니다.",
+                },
+                { 
+                  proClass: '5', 
+                  title: "상품제목 06", 
+                  proSrc: "vue_gallery/pmb6.jpg",
+                  proAlt: "pmb6",
+                  proTxt: "오늘의 할인상품은 입니다.",
+                }
+            ]
+           },
+           methods: {
+              popup: function(idx){
+                  this.show = "true";
+                  this.index = idx;
+                  console.log(index);
+              }
+           }
+       });  
+    </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>디렉티브</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div id="app">
+       <!-- 제목 클릭하면 팝업 -->
+       <h1 v-on:click="popup"> {{ userName }}씨 안녕하세요~! </h1>
+       <input type="text" v-model="userName">
+       <hr>
+       <p>오늘의 날씨 : {{ weather }}</p>
+       <hr>
+       <a :href="hrefA" target="_blank">
+           <img :src="imgUrl" :alt="imgAlt">
+       </a>
+       <div class="popup" v-if="show==true" @click="close">
+          <p> 오늘의 날씨는 화창합니다~!!! </p>
+       </div>
+    </div> 
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+    <script>
+      new Vue({
+         el: "#app",
+         data: {
+            show: false,
+            userName: "홍길동",
+            weather: "비가 내립니다.",
+            hrefA: "https://www.naver.com/",
+            imgUrl: "https://picsum.photos/400",
+            imgAlt: "랜덤이미지"
+         },
+         methods: {
+            popup: function(){
+                this.show = true;
+            },
+            close: function(){
+                this.show = false;
+            }
+         }
+      });
+    </script>
+</body>
+</html>

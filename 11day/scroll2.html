@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <title>scroll</title>
+    <style>
+* { margin: 0; padding: 0; }
+#wrap { height: 2000px; }
+#wrap > div { width: 800px; height: 400px; margin: 30px auto; 
+              position: relative; }
+#wrap > div.on { }
+#wrap > div > h1 { margin: 10px 0; font-size: 32px; opacity: 0; 
+                   transition: .5s; }
+#wrap > div.on > h1 { opacity: 1; margin-left: 30px; }
+#wrap > div > img { opacity: 0; width: 45%; transition: .5s .2s; 
+                    position: absolute; top: 80px; left: -30px; }
+#wrap > div.on > img { opacity: 1; width: 45%; left: 20px; }
+
+.box1 {border: 1px solid skyblue; }
+
+.box2 {border: 1px solid orange;  }
+.box3 {border: 1px solid deeppink; }
+
+#wrap .box3 img.right { left: 480px; }
+#wrap .box3.on img.right { left: 390px }
+
+.box4 {border: 1px solid blueviolet; }
+#wrap .box4 img { top: 150px; left: 20px; }
+#wrap .box4.on img { top: 80px; left: 20px; }
+
+.value { position: fixed; top: 10px; right: 10px; font-size: 32px; }
+    </style>
+<script>
+    $(function(){
+    let box1top = $(".box1").offset().top;
+    let box2top = $(".box2").offset().top;
+    let box3top = $(".box3").offset().top;
+    let box4top = $(".box4").offset().top;
+    console.log(box1top,box2top,box3top,box4top);
+    // 10 422 834 1246
+
+    $(window).scroll(function(){
+        let sctop = $(this).scrollTop();
+        $(".value").text(sctop);
+
+        if ( sctop < box2top - 400 ) {
+            $(".box1").addClass("on").siblings("div").removeClass("on");
+        } else if ( sctop < box3top - 400 ) {
+            $(".box2").addClass("on").siblings("div").removeClass("on");
+        } else if ( sctop < box4top - 400 ) {
+            $(".box3").addClass("on").siblings("div").removeClass("on");
+        } else {
+            $(".box4").addClass("on").siblings("div").removeClass("on");
+        }
+
+    });
+});
+</script>
+</head>
+<body>
+  <p class="value">스크롤 좌표</p>
+  <div id="wrap">
+      <div class="box1"> 
+        <h1>스크롤 첫번째 컨텐츠</h1>
+        <img src="images/banner01.jpg" alt="">
+      </div>
+      <div class="box2"> 
+        <h1>스크롤 두번째 컨텐츠</h1>
+        <img src="images/banner02.jpg" alt="">
+      </div>
+      <div class="box3"> 
+        <h1>스크롤 세번째 컨텐츠</h1>
+        <img src="images/banner03.jpg" alt="" class="left">
+        <img src="images/banner04.jpg" alt="" class="right">
+      </div>
+      <div class="box4"> 
+        <h1>스크롤 네번째 컨텐츠</h1>
+        <img src="images/banner05.jpg" alt="">
+      </div>
+  </div>  
+</body>
+</html>

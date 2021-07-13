@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>디렉티브</title>
+    <style>
+        #text { font-size: 42px; }
+        #text2 { font-size: 24px; text-align: center; }
+        .point { text-decoration: underline; }
+        .line { border: 5px solid red; }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <p :id="idA" :class="classA" :style="styleA" @click="pop" v-if="popup">{{ message }}</p>
+        <img v-bind:src="imgUrl" v-bind:alt="imgNames">
+        <ul>
+            <!-- // for(let i= 0; i < li.length; i++ ) {} -->
+            <li v-for="item in items">{{ item }}</li>
+            <!-- <li>2</li>
+                 <li>3</li> -->
+        </ul>
+    </div> 
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+    <script>
+      new Vue({
+          el: "#app",
+          data: {
+            popup: true,  
+            message: "안녕하세요~!",
+            idA: "text2",
+            classA: "point",
+            styleA: "color:red",
+            items: ["바나나", "딸기", "키위", "수박"],
+            imgUrl: "./vue_gallery/pmb1.jpg",
+            imgNames: "이미지 설명입니다"
+          },
+          methods: {
+            pop: function(){
+                alert("pop");
+            }  
+          }
+      });
+    </script>
+</body>
+</html>
