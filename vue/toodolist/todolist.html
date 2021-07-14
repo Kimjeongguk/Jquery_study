@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todolist</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+    <style>
+      #app { width: 700px; margin: 0 auto; } 
+      h1 { text-align: center; color: rgb(42, 93, 189); } 
+      #inbox { border: 2px solid skyblue; outline: none;
+               padding: 10px 15px; font-size: 20px;
+               border-radius: 10px; width: 80%; }
+      .addbtn { padding: 10px 30px; font-size: 20px; border-radius: 10px;
+                background-color: skyblue; color: #fff;
+                border: none; outline: none; }
+      .list { padding: 0; margin-top: 50px; } 
+      .list li { line-height: 2; font-size: 20px; color: #555;
+                 border-bottom: 1px solid #ddd; list-style-position: inside; }  
+      .list li button { margin: 5px 2px 0; padding: 5px 10px; float: right;
+                        font-size: 16px; border-radius: 5px;
+                        background-color: orange; color: #fff;
+                        border: none; outline: none;    }    
+      .list li button:first-of-type { background-color: cadetblue; }
+      .editbtn {
+                padding: 10px 30px; font-size: 20px; border-radius: 10px;
+                background-color: pink; color: #fff;
+                border: none; outline: none; 
+      }                
+    </style>
+</head>
+<body>
+   <div id="app">
+     <h1>{{ title }}</h1>
+
+     <!--등록할경우 보이기 -->
+     <span v-if="!editing">
+       <input type="text" :id="idName" v-model="todo"><!-- 할일목록 입력input박스 -->
+       <input type="submit" value="등록" :class="className"  v-on:click="addTodo"> <!-- 등록 버튼 -->
+     </span>
+
+    <!--수정할경우 보이기 -->
+     <span v-else>
+       <input type="text" :id="idName" v-model="todo"><!-- 할일목록 수정할 텍스트 가져오기 -->
+       <input type="submit" value="수정" :class="className2" v-on:click="updateTodo"><!-- 수정 버튼 -->
+     </span>
+
+     <ol v-bind:class="olName">
+       <li v-for="(todo, index) in todos"> {{ todo }}
+            <button v-on:click="delbtn(index)"> X 삭제 </button>
+            <button v-on:click="editbtn(index, todo)"> 수정 </button>
+        </li>  
+       <!-- <li> 과제 제출하기 X 삭제 </li>  
+            <li> 반응형 사이트 제작하기 X 삭제</li>  
+            <li> 뷰 문법 공부하기 X 삭제</li>   -->
+     </ol>
+   </div> 
+
+   <script>
+       new Vue({
+           el: "#app",
+           data: {
+             title: "오늘 공부할 목록~!",
+             idName: "inbox",
+             className: "addbtn",
+             className2: "editbtn",
+             olName: "list",
+             todo: "",
+             todos: ["과제 제출하기", "포트폴리오 만들기", "반응형 사이트 만들기"],
+             editing: false,
+             selectIndex: null,
+           },
+           methods: {
+               addTodo: function(){
+                   if(this.todo == ""){
+                       return
+                   }
+                   this.todos.push(this.todo);
+                   this.todo = "";
+               },
+               delbtn: function(index){
+                   this.todos.splice(index,1)
+               },
+               editbtn: function(index, todo){
+                   this.todo = todo;
+                   this.selectIndex = index;
+                   this.editing = true;
+               },
+               updateTodo: function(){
+                    this.todos.splice(this.selectIndex, 1, this.todo);
+                    this.todo = "";
+                    this.editing = false;
+               }
+           },
+           
+       });
+   </script>
+</body>
+</html>
